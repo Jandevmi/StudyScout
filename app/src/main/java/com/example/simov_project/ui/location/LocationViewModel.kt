@@ -45,17 +45,17 @@ class LocationViewModel : ViewModel() {
         }
     }
 
-    private suspend fun downloadIcons() {
+    private fun downloadIcons() {
         locations.value!!.forEach { location ->
             viewModelScope.launch {
-            if (location.iconUri != null) {
-                FirebaseProvider.storage.downloadLocationImage(location.locationId, "icon")
-                    ?.let { bitmap ->
-                        val icons = icons.value!!
-                        icons[location.locationId] = bitmap
-                        _icons.value = icons
-                    }
-            }
+                if (location.iconUri != null) {
+                    FirebaseProvider.storage.downloadLocationImage(location.locationId, "icon")
+                        ?.let { bitmap ->
+                            val icons = icons.value!!
+                            icons[location.locationId] = bitmap
+                            _icons.value = icons
+                        }
+                }
             }
         }
     }
@@ -72,7 +72,7 @@ class LocationViewModel : ViewModel() {
             distances[location.locationId] =
                 (target.distanceTo(gps) / 100).roundToInt().toFloat() / 10
         }
-         val sortedLocations = locations.value!!.sortedBy { distances[it.locationId] }
+        val sortedLocations = locations.value!!.sortedBy { distances[it.locationId] }
         _distances.value = distances
         _locations.value = sortedLocations
     }

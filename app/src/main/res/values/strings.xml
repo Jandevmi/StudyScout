@@ -87,5 +87,4 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="add_reservation_confirm">Confirm reservation</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAH9284wyqCvbijL_-QVhzq5DUKBoQNNiU</string>
 </resources>
