@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "832941474373",
+    "firebase_url": "https://simov-2aad4.firebaseio.com",
+    "project_id": "simov-2aad4",
+    "storage_bucket": "simov-2aad4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832941474373:android:c5e3fd2b9fe600468b592c",
+        "android_client_info": {
+          "package_name": "com.example.simov_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832941474373-vs1q4l5dof4hjbahaksk1014pik02n5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH9284wyqCvbijL_-QVhzq5DUKBoQNNiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832941474373-vs1q4l5dof4hjbahaksk1014pik02n5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

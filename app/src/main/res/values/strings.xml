@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">StudyScout</string>
+
+    <!-- Authentication -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <!-- Locations -->
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
+
+    <!-- Navigation -->
+    <string name="title_reservation">Reservations</string>
+    <string name="title_locations">Locations</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- Add reservations -->
+    <string name="default_time">00:00</string>
+    <string name="loading">loading</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="pickDateTitle">Choose day for reservation</string>
+    <string name="pickStartTimeTitle">Pick start time</string>
+    <string name="pickEndTimeTitle">Pick end time</string>
+    <string name="addReservation_date">Date</string>
+    <string name="startTime">Start</string>
+    <string name="endTime">End</string>
+    <string name="addReservation_make_reservation">Make Reservation</string>
+    <string name="addReservation_address">Address: %1s</string>
+    <string name="confirm">Confirm</string>
+
+    <!-- Add Location -->
+    <string name="enter_longitude">Enter Longitude</string>
+    <string name="enter_latitude">Enter Latitude</string>
+    <string name="number_of_seats">Number of Seats</string>
+    <string name="enter_seat_count">Enter seat count</string>
+    <string name="choose_location_with_google_places">Choose location with Google Places</string>
+    <string name="operating_times">Operating Times</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="enter_the_address">Enter the address</string>
+    <string name="address">Address</string>
+    <string name="enter_a_name_for_the_location">Enter a name for the location</string>
+    <string name="all">All</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="close">Close</string>
+    <string name="close_this_day">Close this day</string>
+    <string name="set_image">Set image</string>
+    <string name="pick_image">Pick Image</string>
+    <string name="pick_icon">Pick Icon</string>
+    <string name="upload_images">Upload Images</string>
+
+    <!-- Reservations -->
+    <string name="empty_reservations">No reservations yet</string>
+    <string name="reservation_duration">From %1$s  to  %2$s</string>
+    <string name="reservation_imageView">Location photo</string>
+    <string name="delete_reservation_button">Delete reservation button</string>
+
+    <!-- Settings -->
+    <string name="logout_button">Logout</string>
+    <string name="owner_button">Switch location owner mode</string>
+    <string name="create_location_button">Add a location</string>
+    <string name="owner_off">Switch owner mode off</string>
+    <string name="owner_on">Switch owner mode on</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="add_reservation_confirm">Confirm reservation</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAH9284wyqCvbijL_-QVhzq5DUKBoQNNiU</string>
+</resources>

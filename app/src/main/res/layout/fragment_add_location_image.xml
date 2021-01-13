@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.addLocation.AddLocationImageFragment">
+
+    <ImageView
+        android:id="@+id/addImage_location_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_picture_foreground" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addImage_viewHolder_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/viewHolder_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addImage_location_imageView">
+
+        <TextView
+            android:id="@+id/addImage_name_textView"
+            style="@style/viewHolder_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location name"
+            app:layout_constraintEnd_toStartOf="@id/addImage_add_imageView"
+            app:layout_constraintStart_toEndOf="@+id/addImage_viewHolder_imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addImage_address_textview"
+            style="@style/viewHolder_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location address"
+            app:layout_constraintEnd_toStartOf="@id/addImage_add_imageView"
+            app:layout_constraintStart_toEndOf="@+id/addImage_viewHolder_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/addImage_name_textView" />
+
+
+        <ImageView
+            android:id="@+id/addImage_add_imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="Add reservation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_btn" />
+
+        <ImageView
+            android:id="@+id/addImage_viewHolder_imageView"
+            style="@style/viewHolder_location_image"
+            android:contentDescription="@string/reservation_imageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_picture_round" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/addImage_image_pick_button"
+        style="@style/button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_image"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/addImage_icon_pick_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addImage_viewHolder_container" />
+
+    <Button
+        android:id="@+id/addImage_icon_pick_button"
+        style="@style/button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_icon"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/addImage_image_pick_button"
+        app:layout_constraintTop_toBottomOf="@+id/addImage_viewHolder_container" />
+
+    <Button
+        android:id="@+id/addImage_upload_button"
+        style="@style/button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_images"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/addImage_confirm_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addImage_confirm_button"
+        style="@style/button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/addImage_progress_loader"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/loadingColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

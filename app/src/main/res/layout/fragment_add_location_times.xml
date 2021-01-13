@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.addLocation.AddLocationTimesFragment">
+
+
+    <GridLayout
+        android:id="@+id/addLocationTimes_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/addLocation_image_button">
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/all"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:textStyle="bold"
+            android:text="@string/startTime"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:textStyle="bold"
+            android:text="@string/endTime"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:textStyle="bold"
+            android:text="@string/close"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/monday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button" />
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/tuesday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/wednesday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/thursday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/friday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/saturday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+        <Button
+            style="@style/times_button"
+            android:text="@string/sunday"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <TextView
+            style="@style/times_textView"
+            android:text="@string/default_time"/>
+
+        <ImageButton
+            style="@style/close_button"/>
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/addLocation_image_button"
+        style="@style/button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="@string/set_image"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0D20BE</color>
+    <color name="colorPrimaryDark">#002A22</color>
+    <color name="colorSecondary">#B8B3BE</color>
+    <color name="colorAccent">#F7934C</color>
+    <color name="colorBackgroundDark">#2E2E2E</color>
+    <color name="colorBackgroundBright">#F8FFF6</color>
+
+    <color name="colorDarkText">#000000</color>
+    <color name="colorText">#202020</color>
+    <color name="colorTextWhite">#ECECEC</color>
+    <color name="openGreen">#00D108</color>
+    <color name="closeRed">#FF1100</color>
+
+    <color name="recyclerBackground">@color/colorBackgroundBright</color>
+    <color name="buttonBackground">@color/colorBackgroundBright</color>
+    <color name="buttonText">@color/colorDarkText</color>
+    <color name="loadingColor">@color/colorAccent</color>
+    <color name="calendarAccent">@color/colorAccent</color>
+    <color name="calendarButtonText">@color/colorTextWhite</color>
+
+    <color name="colorAccentOld">#2196F3</color>
+    <color name="colorPrimaryDarkOld">#3700B3</color>
+    <color name="colorTextOld">#141414</color>
+</resources>

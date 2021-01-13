@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/review_layout"
+    style="@style/viewHolder_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/addReservation_name_textView"
+        style="@style/viewHolder_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@id/location_open_textView"
+        app:layout_constraintStart_toEndOf="@+id/location_icon_imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Location name" />
+
+    <TextView
+        android:id="@+id/location_address_textview"
+        style="@style/viewHolder_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/location_icon_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/addReservation_name_textView"
+        tools:text="Location address" />
+
+    <TextView
+        android:id="@+id/location_distance_textview"
+        style="@style/viewHolder_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/location_icon_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/location_address_textview"
+        tools:text="Distance: " />
+
+
+    <TextView
+        android:id="@+id/location_open_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/colorDarkText"
+        app:layout_constraintBottom_toBottomOf="@+id/addReservation_name_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addReservation_name_textView"
+        tools:text="Closed" />
+
+    <ImageView
+        android:id="@+id/location_icon_imageView"
+        style="@style/viewHolder_location_image"
+        android:contentDescription="@string/reservation_imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_picture_round" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

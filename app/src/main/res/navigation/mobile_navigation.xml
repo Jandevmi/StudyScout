@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_login">
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.simov_project.ui.auth.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_navigation_login_to_register"
+            app:destination="@id/navigation_registration"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_login_to_location"
+            app:destination="@id/navigation_location"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_registration"
+        android:name="com.example.simov_project.ui.auth.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_navigation_register_to_location"
+            app:destination="@id/navigation_location"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reservation"
+        android:name="com.example.simov_project.ui.reservation.ReservationFragment"
+        android:label="@string/title_reservation"
+        tools:layout="@layout/fragment_reservation"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+        <action
+            android:id="@+id/action_navigation_reservation_to_reservationAdd"
+            app:destination="@id/navigation_reservationAdd" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_location"
+        android:name="com.example.simov_project.ui.location.LocationFragment"
+        android:label="@string/title_locations"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_navigation_to_reservationAdd"
+            app:destination="@id/navigation_reservationAdd"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_location_to_addLocation"
+            app:destination="@id/editLocation_nav_graph"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reservationAdd"
+        android:name="com.example.simov_project.ui.addReservation.AddReservationFragment"
+        android:label="ReservationAddFragment"
+        tools:layout="@layout/fragment_add_reservation">
+        <argument
+            android:name="locationId"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_navigation_to_reservation"
+            app:destination="@id/navigation_reservation"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.simov_project.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_navigation_to_login"
+            app:destination="@id/navigation_login"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_settings_to_addLocationFragment"
+            app:destination="@id/editLocation_nav_graph"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+        </action>
+        <action
+            android:id="@+id/action_navigtion_settings_to_maps"
+            app:destination="@id/addLocationMapsFragment" />
+    </fragment>
+
+
+    <navigation
+        android:id="@+id/editLocation_nav_graph"
+        app:startDestination="@id/navigation_addLocation">
+        <argument
+            android:name="locationId"
+            app:argType="string" />
+        <fragment
+            android:id="@+id/navigation_addLocation"
+            android:name="com.example.simov_project.ui.addLocation.AddLocationFragment"
+            android:label="fragment_add_location"
+            tools:layout="@layout/fragment_add_location">
+            <argument
+                android:name="locationId"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_navigation_addLocation_to_addTimes"
+                app:destination="@id/navigation_addLocationTimes"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            <action
+                android:id="@+id/action_navigation_addLocation_to_location"
+                app:destination="@id/navigation_location"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_addLocationTimes"
+            android:name="com.example.simov_project.ui.addLocation.AddLocationTimesFragment"
+            android:label="fragment_add_location_times"
+            tools:layout="@layout/fragment_add_location_times">
+            <action
+                android:id="@+id/action_navigation_addLocationTimes_to_addLocationImage"
+                app:destination="@id/navigation_addLocationImage"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_addLocationImage"
+            android:name="com.example.simov_project.ui.addLocation.AddLocationImageFragment"
+            android:label="fragment_add_location_image"
+            tools:layout="@layout/fragment_add_location_image">
+            <action
+                android:id="@+id/action_navigation_addLocationImage_to_location"
+                app:destination="@id/navigation_location"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+    </navigation>
+    <fragment
+        android:id="@+id/addLocationMapsFragment"
+        android:name="com.example.simov_project.ui.addLocation.AddLocationMapsFragment"
+        android:label="fragment_add_location_maps"
+        tools:layout="@layout/fragment_add_location_maps" />
+</navigation>

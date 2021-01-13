@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.reservation.ReservationFragment">
+
+    <ImageView
+        android:id="@+id/addReservation_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_picture_foreground" />
+
+    <TextView
+        android:id="@+id/addReservation_name_textView"
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/cardview_light_background"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/addReservation_imageView"
+        app:layout_constraintEnd_toEndOf="@+id/addReservation_imageView"
+        app:layout_constraintStart_toStartOf="@+id/addReservation_imageView"
+        app:layout_constraintTop_toTopOf="@+id/addReservation_imageView"
+        tools:text="Location name" />
+
+    <TextView
+        android:id="@+id/addReservation_address_textView"
+        style="@style/heading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_imageView"
+        tools:text="This is the address" />
+
+    <GridLayout
+        android:id="@+id/addReservation_times_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_shape"
+        android:columnCount="8"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_address_textView">
+
+        <Space />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Mo" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Tu" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="We" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Th" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Fr" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Sa" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Su" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Open:" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="Close:" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+        <TextView
+            style="@style/weekday"
+            android:text="@string/default_time" />
+
+    </GridLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addReservation_maps_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_times_container" >
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/addReservation_mapView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            map:cameraZoom="14"
+            map:liteMode="true"
+            map:mapType="normal" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addReservation_picker_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/addReservation_confirm_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_maps_container"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/addReservation_date_textView"
+            style="@style/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:text="Edit date, start- and endtime"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/addReservation_date_button"
+            style="@style/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addReservation_date_textView"
+            app:layout_constraintEnd_toStartOf="@id/addReservation_startTime_button"/>
+
+
+        <Button
+            android:id="@+id/addReservation_startTime_button"
+            style="@style/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintStart_toEndOf="@id/addReservation_date_button"
+            app:layout_constraintTop_toTopOf="@id/addReservation_date_button"
+            app:layout_constraintEnd_toStartOf="@id/addReservation_endTime_button"/>
+
+        <Button
+            android:id="@+id/addReservation_endTime_button"
+            style="@style/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/addReservation_startTime_button"
+            app:layout_constraintTop_toTopOf="@id/addReservation_startTime_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/addReservation_confirm_button"
+        style="@style/button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/addReservation_make_reservation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_picker_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
