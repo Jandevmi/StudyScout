@@ -47,6 +47,7 @@ class LocationViewModel : ViewModel() {
 
     private suspend fun downloadIcons() {
         locations.value!!.forEach { location ->
+            viewModelScope.launch {
             if (location.iconUri != null) {
                 FirebaseProvider.storage.downloadLocationImage(location.locationId, "icon")
                     ?.let { bitmap ->
@@ -54,6 +55,7 @@ class LocationViewModel : ViewModel() {
                         icons[location.locationId] = bitmap
                         _icons.value = icons
                     }
+            }
             }
         }
     }
