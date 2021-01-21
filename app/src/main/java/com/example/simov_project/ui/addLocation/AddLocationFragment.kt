@@ -27,6 +27,9 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 
+/**
+ * Fragment to start the creation of a location
+ */
 class AddLocationFragment : Fragment() {
 
     private lateinit var placesClient: PlacesClient
@@ -90,14 +93,18 @@ class AddLocationFragment : Fragment() {
             deleteButton.visibility = View.GONE
         } else {
             deleteButton.visibility = View.VISIBLE
-            addLocationViewModel.setLocation(locationViewModel.locations.value!!.find { it.locationId == args.locationId }!!) //Fixme !!
+            addLocationViewModel.updateLocalLocation(
+                locationViewModel.locations.value!!
+                    .find { it.locationId == args.locationId }!!
+            ) //Fixme !!
             addLocationViewModel.downloadImages()
         }
 
+
+        // Start intent to find location with Google places API
         searchContainer.setOnClickListener {
             val fields: List<Place.Field> =
                 listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS)
-
             // Start the autocomplete intent.
             val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
                 //.setTypeFilter(TypeFilter.ESTABLISHMENT).setCountry("de")
@@ -105,6 +112,7 @@ class AddLocationFragment : Fragment() {
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
 
+        // Create dialog to delete this location
         deleteButton.setOnClickListener {
             val location = addLocationViewModel.location.value!!
             val builder = AlertDialog.Builder(this.context)
@@ -125,6 +133,7 @@ class AddLocationFragment : Fragment() {
             alert.show()
         }
 
+        // Check if required data is filled, save location, start navigation
         timesButton.setOnClickListener {
             val toastStringId = when {
                 nameView.text.isNullOrBlank() -> {
@@ -170,6 +179,7 @@ class AddLocationFragment : Fragment() {
         }
     }
 
+    // Save result from Google Places API pick
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val addLocationViewModel: AddLocationViewModel by navGraphViewModels(R.id.editLocation_nav_graph)
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {

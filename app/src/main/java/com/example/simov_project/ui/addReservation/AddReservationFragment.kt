@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.simov_project.R
-import com.example.simov_project.dataclasses.Reservation
 import com.example.simov_project.ui.auth.AuthViewModel
 import com.example.simov_project.ui.location.LocationViewModel
 import com.example.simov_project.ui.reservation.ReservationViewModel
@@ -64,7 +63,7 @@ class AddReservationFragment : Fragment() {
             view.findViewById(R.id.addReservation_picker_container)
 
         nameView.text = location.name
-        addressView.text = getString(R.string.addReservation_address, location.addressString)
+        addressView.text = getString(R.string.address_string, location.addressString)
         /**
          * Loop to update operating house.
          * Objects in the layoutView are indexed, but anonymous
@@ -83,22 +82,14 @@ class AddReservationFragment : Fragment() {
             }
         }
 
-        /**
-         * If Location has Latitude and Longitude show maps with marker
-         */
-        if (location.latitude == null || location.longtitude == null)
-            mapView.visibility = View.GONE
-        else {
-            mapView.visibility = View.VISIBLE
-            val latLng = LatLng(location.latitude!!, location.longtitude!!)
-            mapView.onCreate(savedInstanceState)
-            mapView.getMapAsync { googleMap ->
-                val marker = MarkerOptions().position(latLng)
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-                googleMap.addMarker(marker)
-            }
+        // Set marker and position of mapView
+        val latLng = LatLng(location.latitude, location.longtitude)
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync { googleMap ->
+            val marker = MarkerOptions().position(latLng)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            googleMap.addMarker(marker)
         }
-
 
         /**
          * Observing the reservation starts intents
@@ -133,12 +124,17 @@ class AddReservationFragment : Fragment() {
         })
 
         /**
-         * Set Image for location after download
+         * Find and set location image
+         * If no image found -> start download -> observe images
          */
-        addReservationModel.locationImage.observe(viewLifecycleOwner, Observer {
-            if (it != null)
-                locationImage.setImageBitmap(it)
-        })
+        locationViewModel.images.value!![location.locationId]?.let {
+            locationImage.setImageBitmap(it)
+        } ?: kotlin.run {
+            locationViewModel.downloadImage(location.locationId)
+            locationViewModel.images.observe(viewLifecycleOwner, Observer { images ->
+                images[location.locationId]?.let { locationImage.setImageBitmap(it) }
+            })
+        }
 
         /**
          * date, start- and endTimeButton are not visible until date/time is initialized

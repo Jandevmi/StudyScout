@@ -9,15 +9,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.simov_project.dataclasses.Location
 import com.example.simov_project.db.FirebaseProvider
 import com.example.simov_project.ui.addReservation.AddReservationViewModel
-import com.google.firebase.ktx.Firebase
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import com.wdullaer.materialdatetimepicker.time.Timepoint
 import kotlinx.coroutines.launch
 
 /**
- * Holds the values and logic for the locationFragment
- * @property _location new Location that can be changed inside the viewModel
- * @property location new Location that can be accessed from outside, used to create a location
+ * Holds the values and logic for the addLocationFragment
+ * @property location location that is created or edited
+ * @property icon of the location that is used in recyclerViews
+ * @property image of the location hat is used in location / reservation detail page
+ * @property loading is > 0 during upload. Loading symbol is shown when > 0
  */
 class AddLocationViewModel : ViewModel() {
 
@@ -31,10 +32,10 @@ class AddLocationViewModel : ViewModel() {
     val image: LiveData<Bitmap> = _image
 
     /**
-     * Set the location as viewModel location
+     * Set / update the location as viewModel location
      * @param location the location object to be set
      */
-    fun setLocation(location: Location) {
+    fun updateLocalLocation(location: Location) {
         _location.value = location
     }
 
@@ -54,10 +55,10 @@ class AddLocationViewModel : ViewModel() {
         }
     }
 
-    fun updateLocalLocation(location: Location) {
-        _location.value = location
-    }
-
+    /**
+     * Downloads the old image / icon for the location
+     * Stored as LiveData<Bitmap>
+     */
     fun downloadImages() {
         viewModelScope.launch {
             if (location.value!!.iconUri != null)
@@ -75,9 +76,14 @@ class AddLocationViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Uploads images from LiveData<Bitmap> to Firebase Storage
+     * Saves the URI in the Location property
+     * LiveData++ at download start, LiveData-- when download is finished
+     */
     fun uploadImage(filename: String, imageView: ImageView) {
         viewModelScope.launch {
-            _loading.value!!.plus(1)
+            _loading.value = loading.value!! + 1
             when (filename) {
                 "icon" -> _location.value!!.iconUri = FirebaseProvider.storage.uploadLocationImage(
                     location.value!!.locationId,
@@ -91,10 +97,17 @@ class AddLocationViewModel : ViewModel() {
                         imageView
                     )
             }
-            _loading.value!!.minus(1)
+            _loading.value = loading.value!! - 1
         }
     }
 
+    /**
+     * Returns a TimePickerDialog to change operating times of location
+     * @param isStartTime true -> change openHour / openMinute
+     *                    false -> change closeHour / closeMinute
+     * @param day day of week to be changed ( 0 - 6 = Monday - Sunday, 7 = all days)
+     * @return instance of TimePickerDialog. Listener manipulates this location.
+     */
     fun getTimePicker(isStartTime: Boolean, day: Int): TimePickerDialog {
         val location = _location.value!!
         location.apply {
@@ -102,20 +115,20 @@ class AddLocationViewModel : ViewModel() {
                 if (day == 7) {
                     for (allDays in 0..6) {
                         if (isStartTime) {
-                            this.openTimeHour[allDays] = hourOfDay
-                            this.openTimeMinute[allDays] = minute
+                            this.openHour[allDays] = hourOfDay
+                            this.openMinute[allDays] = minute
                         } else {
-                            this.closeTimeHour[allDays] = hourOfDay
-                            this.closeTimeMinute[allDays] = minute
+                            this.closeHour[allDays] = hourOfDay
+                            this.closeMinute[allDays] = minute
                         }
                     }
                 } else {
                     if (isStartTime) {
-                        this.openTimeHour[day] = hourOfDay
-                        this.openTimeMinute[day] = minute
+                        this.openHour[day] = hourOfDay
+                        this.openMinute[day] = minute
                     } else {
-                        this.closeTimeHour[day] = hourOfDay
-                        this.closeTimeMinute[day] = minute
+                        this.closeHour[day] = hourOfDay
+                        this.closeMinute[day] = minute
                     }
                 }
                 _location.value = location
@@ -125,18 +138,18 @@ class AddLocationViewModel : ViewModel() {
             // Setup timePickerDialog parameter
             val minTime = when {
                 isStartTime -> Timepoint(0, 0, 0)
-                day == 7 -> Timepoint(location.openTimeHour[0], location.openTimeHour[0], 0)
-                else -> Timepoint(location.openTimeHour[day], location.openTimeHour[day], 0)
+                day == 7 -> Timepoint(location.openHour[0], location.openHour[0], 0)
+                else -> Timepoint(location.openHour[day], location.openHour[day], 0)
             }
             val initialTime = when {
                 day == 7 && isStartTime -> Timepoint(
-                    location.openTimeHour[0],
-                    location.openTimeHour[0],
+                    location.openHour[0],
+                    location.openHour[0],
                     0
                 )
-                day == 7 -> Timepoint(location.closeTimeHour[0], location.closeTimeHour[0], 0)
-                isStartTime -> Timepoint(location.openTimeHour[day], location.openTimeHour[day], 0)
-                else -> Timepoint(location.closeTimeHour[day], location.closeTimeHour[day], 0)
+                day == 7 -> Timepoint(location.closeHour[0], location.closeHour[0], 0)
+                isStartTime -> Timepoint(location.openHour[day], location.openHour[day], 0)
+                else -> Timepoint(location.closeHour[day], location.closeHour[day], 0)
             }
 
             // Setup timePickerDialog parameter ToDo: Rework this

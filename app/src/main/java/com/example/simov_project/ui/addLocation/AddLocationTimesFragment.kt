@@ -14,6 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.simov_project.R
 
+/**
+ * Fragment to specify the operating hours of the location
+ */
 class AddLocationTimesFragment : Fragment() {
 
     override fun onCreateView(
@@ -48,7 +51,6 @@ class AddLocationTimesFragment : Fragment() {
          * Set onClick listeners for the time buttons
          * day 7 is all button
          */
-
         for (day in 0..7) {
             val buttonNumber = if (day == 7) 0 else (day + 1) * columnCount
             val checkButtonNumber = (day + 1) * columnCount + 3
@@ -62,15 +64,16 @@ class AddLocationTimesFragment : Fragment() {
                 val closeButton = timesContainer[checkButtonNumber] as ImageButton
                 closeButton.setOnClickListener {
                     val location = addLocationViewModel.location.value!!
-                    location.openTimeHour[day] = 0
-                    location.openTimeMinute[day] = 0
-                    location.closeTimeHour[day] = 0
-                    location.closeTimeHour[day] = 0
+                    location.openHour[day] = 0
+                    location.openMinute[day] = 0
+                    location.closeHour[day] = 0
+                    location.closeHour[day] = 0
                     addLocationViewModel.updateLocalLocation(location)
                 }
             }
         }
 
+        // Update location and navigate to addImage
         imageButton.setOnClickListener {
             addLocationViewModel.updateFirebaseLocation()
             findNavController().navigate(R.id.action_navigation_addLocationTimes_to_addLocationImage)
@@ -83,7 +86,7 @@ class AddLocationTimesFragment : Fragment() {
      * Starts a TimePickerDialog
      * @param context needed to set the Button colors
      * @param addLocationViewModel logic for time picking and persist the reservation
-     * @param day
+     * @param day day of week
      * @param isStartTime defines if start or end time is set
      */
     private fun startTimePick(

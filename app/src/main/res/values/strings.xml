@@ -26,11 +26,12 @@
     <string name="pickStartTimeTitle">Pick start time</string>
     <string name="pickEndTimeTitle">Pick end time</string>
     <string name="addReservation_date">Date</string>
-    <string name="startTime">Start</string>
-    <string name="endTime">End</string>
-    <string name="addReservation_make_reservation">Make Reservation</string>
-    <string name="addReservation_address">Address: %1s</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="make_reservation">Make Reservation</string>
+    <string name="address_string">Address: %1s</string>
     <string name="confirm">Confirm</string>
+    <string name="activate_reservation">Activate Reservation</string>
 
     <!-- Add Location -->
     <string name="enter_longitude">Enter Longitude</string>
@@ -87,4 +88,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="add_reservation_confirm">Confirm reservation</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">Hidden</string>
+    <string name="add_calendar_button">Add reservation to calendar</string>
+    <string name="save_qr_code_to_gallery">Save QR-code to gallery</string>
 </resources>

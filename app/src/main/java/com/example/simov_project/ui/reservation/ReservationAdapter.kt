@@ -1,12 +1,9 @@
 package com.example.simov_project.ui.reservation
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simov_project.R
@@ -19,7 +16,6 @@ import java.util.*
 class ReservationAdapter(
     private val reservations: List<Reservation>,
     private val icons: HashMap<String, Bitmap>,
-    private val reservationFragment: ReservationFragment,
     private val locationOwner: Boolean
 ) :
     RecyclerView.Adapter<CustomViewHolder>() {
@@ -49,56 +45,23 @@ class ReservationAdapter(
 
                 this.setOnClickListener {
                     val action =
-                        ReservationFragmentDirections.actionNavigationReservationToReservationAdd(
-                            reservation.locationId
+                        ReservationFragmentDirections.actionNavigationReservationToReservationDetail(
+                            reservation.reservationId
                         )
                     findNavController().navigate(action)
                 }
 
-                this.reservation_calendar_imageView.setOnClickListener {
-                    val startCalendar = Calendar.getInstance()
-                    val endCalendar = Calendar.getInstance()
-                    startCalendar.set(
-                        reservation.year!!,
-                        reservation.month!! - 1,
-                        reservation.day!!,
-                        reservation.startHour!!,
-                        reservation.startMinute!!
-                    )
-                    endCalendar.set(
-                        reservation.year!!,
-                        reservation.month!! - 1,
-                        reservation.day!!,
-                        reservation.endHour!!,
-                        reservation.endMinute!!
-                    )
-
-                    val i = Intent(Intent.ACTION_EDIT)
-                    i.type = "vnd.android.cursor.item/event"
-                    i.putExtra("beginTime", startCalendar.timeInMillis)
-                    i.putExtra("endTime", endCalendar.timeInMillis)
-                    i.putExtra("allDay", false)
-                    i.putExtra("title", "Study reservation at ${reservation.locationName}")
-                    startActivity(this.context, i, null)
-                }
-
-
-                this.reservation_delete_imageView.setOnClickListener {
-                    val builder = AlertDialog.Builder(this.context)
-                    builder.setMessage("Delete Reservation at ${reservation.locationName}?")
-                        .setCancelable(false)
-                        .setPositiveButton("Delete") { _, _ ->
-                            reservationFragment.deleteReservation(
-                                reservation.reservationId,
-                                reservation.locationId
-                            )
-                        }
-                        .setNegativeButton("Keep") { dialog, _ ->
-                            // Dismiss the dialog
-                            dialog.dismiss()
-                        }
-                    val alert = builder.create()
-                    alert.show()
+                val reservationStatus = reservation.getReservationStatus()
+                this.reservation_status_textView.apply {
+                    val textColorId = when (reservationStatus){
+                        ReservationStatus.ACTIVE -> R.color.openGreen
+                        ReservationStatus.ACTIVATE -> R.color.colorPrimary
+                        ReservationStatus.CANCELLED -> R.color.closeRed
+                        ReservationStatus.RESERVED -> R.color.colorPrimaryDark
+                        else -> R.color.colorDarkText
+                    }
+                    text = reservationStatus.status
+                    setTextColor(context.getColor(textColorId))
                 }
             }
         }

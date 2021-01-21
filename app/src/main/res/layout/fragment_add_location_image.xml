@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/addImage_address_textview"
+            android:id="@+id/addImage_address_textView"
             style="@style/viewHolder_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,16 +89,27 @@
         app:layout_constraintStart_toEndOf="@id/addImage_image_pick_button"
         app:layout_constraintTop_toBottomOf="@+id/addImage_viewHolder_container" />
 
-    <Button
-        android:id="@+id/addImage_upload_button"
-        style="@style/button"
-        android:layout_width="170dp"
+
+    <TextView
+        android:id="@+id/addImage_qr_textView"
+        style="@style/heading"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@string/upload_images"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/addImage_confirm_button"
+        android:gravity="center"
+        android:text="@string/save_qr_code_to_gallery"
+        app:layout_constraintBottom_toBottomOf="@+id/addImage_qr_imageView"
+        app:layout_constraintEnd_toStartOf="@+id/addImage_qr_imageView"
+        app:layout_constraintTop_toTopOf="@+id/addImage_qr_imageView" />
+
+    <ImageView
+        android:id="@+id/addImage_qr_imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@id/addImage_confirm_button"
+        app:layout_constraintTop_toBottomOf="@id/addImage_image_pick_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:src="@mipmap/ic_picture_round"/>
 
     <Button
         android:id="@+id/addImage_confirm_button"
@@ -117,8 +128,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/loadingColor"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addImage_image_pick_button"
+        app:layout_constraintBottom_toTopOf="@id/addImage_qr_imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

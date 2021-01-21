@@ -76,19 +76,6 @@ class LocationFragment : Fragment() {
                 )
             }
         })
-        /*locationViewModel.distances.observe(viewLifecycleOwner, Observer { itDistances ->
-            user?.let {
-                locationList.swapAdapter(
-                    LocationAdapter(
-                        locationViewModel.locations.value!!,
-                        locationViewModel.icons.value!!,
-                        itDistances,
-                        this,
-                        user.locationOwner
-                    ), true
-                )
-            }
-        })*/
     }
 
     private fun calculateDistances(){

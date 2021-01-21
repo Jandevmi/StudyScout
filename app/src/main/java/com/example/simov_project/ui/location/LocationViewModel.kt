@@ -9,8 +9,10 @@ import kotlin.math.roundToInt
 
 /**
  * Holds the values and logic for the locationFragment
- * @property _locations Locations from firebase that can be changed inside the viewModel
- * @property locations Locations from firebase that can be accessed from outside, used to display locations
+ * @property locations Locations from firebase to be displayed in recyclerView
+ * @property icons a hashMap of locationId and the icon as bitmap for the location
+ * @property images a hashMap of locationId and the image as bitmap for the location
+ * @property distances a hashMap of locationId and the distance between the user and the location
  */
 class LocationViewModel : ViewModel() {
 
@@ -18,17 +20,20 @@ class LocationViewModel : ViewModel() {
     private val _icons = MutableLiveData<HashMap<String, Bitmap>>().apply {
         value = hashMapOf()
     }
+    private val _images = MutableLiveData<HashMap<String, Bitmap>>().apply {
+        value = hashMapOf()
+    }
     private val _distances = MutableLiveData<HashMap<String, Float>>().apply {
         value = hashMapOf()
     }
     val locations: LiveData<List<Location>> = _locations
     val icons: LiveData<HashMap<String, Bitmap>> = _icons
+    val images: LiveData<HashMap<String, Bitmap>> = _images
     val distances: LiveData<HashMap<String, Float>> = _distances
 
     init {
         getAllFirebaseLocations()
     }
-
 
     fun getLocalLocation(locationId: String): Location? {
         return locations.value!!.find { it.locationId == locationId }
@@ -45,6 +50,9 @@ class LocationViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Downloads the icon for each location
+     */
     private fun downloadIcons() {
         locations.value!!.forEach { location ->
             viewModelScope.launch {
@@ -60,6 +68,31 @@ class LocationViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Downloads an image
+     * @param locationId the location to download the image for
+     */
+    fun downloadImage(locationId: String) {
+        val location = locations.value!!.find { it.locationId == locationId }
+        location?.let {
+            if (it.imageUri != null) {
+                viewModelScope.launch {
+                    FirebaseProvider.storage.downloadLocationImage(location.locationId, "image")
+                        ?.let { bitmap ->
+                            val images = _images.value!!
+                            images[locationId] = bitmap
+                            _images.value = images
+                        }
+                }
+            }
+        }
+    }
+
+    /**
+     * Calculate distance to each location
+     * @param latitude of the user
+     * @param longitude of the user
+     */
     fun calculateDistances(latitude: Double, longitude: Double) {
         val distances = hashMapOf<String, Float>()
         locations.value!!.forEach { location ->
@@ -141,8 +174,8 @@ class LocationViewModel : ViewModel() {
      */
     fun isDayClosed(location: Location, day: Int): Boolean {
         return location.let {
-            it.openTimeHour[day] == it.closeTimeHour[day] &&
-                    it.openTimeMinute[day] == it.closeTimeMinute[day]
+            it.openHour[day] == it.closeHour[day] &&
+                    it.openMinute[day] == it.closeMinute[day]
         }
     }
 }

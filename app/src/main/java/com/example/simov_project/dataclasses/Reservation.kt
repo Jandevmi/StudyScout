@@ -1,5 +1,8 @@
 package com.example.simov_project.dataclasses
 
+import com.example.simov_project.ui.reservation.ReservationStatus
+import java.util.*
+
 /**
  * A location always needs id, userId and locationId
  * Other parameter are optional for now
@@ -15,7 +18,9 @@ data class Reservation(
     var userName: String = "-1",
     var locationId: String = "-1",
     var locationName: String = "Location name",
+    var address: String = "-1",
     var seatNumber: String = "-1",
+    var activated: Boolean = false,
     var day: Int? = null,
     var month: Int? = null,
     var year: Int? = null,
@@ -38,6 +43,23 @@ data class Reservation(
         val hourIndicator = startHour.toString().padStart(2, '0').toInt() * 100
         val minuteIndicator = startMinute.toString().padStart(2, '0').toInt()
         return yearIndicator + monthIndicator + dayIndicator + hourIndicator + minuteIndicator
+    }
+
+    fun getReservationStatus(): ReservationStatus {
+        val now = Calendar.getInstance().timeInMillis
+        val start = Calendar.getInstance().apply {
+            set(year!!, month!! - 1, day!!, startHour!!, startMinute!!) }.timeInMillis
+        val end = Calendar.getInstance().apply {
+            set(year!!, month!! - 1, day!!, endHour!!, endMinute!!) }.timeInMillis
+        val cancel = start + 30 * 60 * 1000
+        return when {
+                end < now && activated -> ReservationStatus.ENDED
+                start <= now && activated -> ReservationStatus.ACTIVE
+                now > cancel -> ReservationStatus.CANCELLED
+                start <= now -> ReservationStatus.ACTIVATE
+                start > now -> ReservationStatus.RESERVED
+                else -> ReservationStatus.UNKNOWN
+        }
     }
 
     fun getStartTime(): String? {

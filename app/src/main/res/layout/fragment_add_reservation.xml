@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textStyle="italic"
+        android:maxLines="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addReservation_imageView"
         tools:text="This is the address" />
@@ -49,11 +50,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/white_shape"
         android:columnCount="8"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addReservation_address_textView">
+        app:layout_constraintTop_toBottomOf="@id/addReservation_maps_container">
 
         <Space />
 
@@ -156,11 +158,10 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="@dimen/corner_radius"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addReservation_times_container" >
+        app:layout_constraintTop_toBottomOf="@id/addReservation_address_textView" >
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/addReservation_mapView"
@@ -180,7 +181,7 @@
         app:layout_constraintBottom_toTopOf="@id/addReservation_confirm_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addReservation_maps_container"
+        app:layout_constraintTop_toBottomOf="@id/addReservation_times_container"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         tools:visibility="visible">
@@ -236,7 +237,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="@string/addReservation_make_reservation"
+        android:text="@string/make_reservation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

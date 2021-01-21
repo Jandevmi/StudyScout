@@ -16,7 +16,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.simov_project.R
 
-
+/**
+ * Fragment for login
+ * Navigates to locationsFragment or RegisterFragment
+ * Automatically navigates to locationsFragment if user is logged in
+ */
 class LoginFragment : Fragment() {
 
     override fun onCreateView(

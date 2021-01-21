@@ -1,22 +1,6 @@
 package com.example.simov_project.dataclasses
 
-import android.util.Log
 import com.wdullaer.materialdatetimepicker.time.Timepoint
-import java.sql.Time
-
-/**
- * A location always needs id, userId and name
- * Other parameter are optional for now
- *
- * Note that a ID is created after it has been add to Firestore
- * I recommend to create location objects with id "-1" and overwrite the the local object
- * once it has been added to Firestore
- *
- * Opening times are represented in 2 Arrays openTime and closeTime,
- * with 7 fields each for one weekday, starting with Monday
- *
- * Default lat / long = ISEP
- */
 
 data class Location(
     var locationId: String = "-1", // FixMe: Don´t write to Firestore
@@ -29,30 +13,30 @@ data class Location(
     var longtitude: Double = -8.608977699999999,
     var maxSeats: Int? = null,
     var bookedSeats: Int? = null,
-    var openTimeHour: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
-    var openTimeMinute: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
-    var closeTimeHour: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
-    var closeTimeMinute: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
+    var openHour: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
+    var openMinute: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
+    var closeHour: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
+    var closeMinute: MutableList<Int> = mutableListOf(0, 0, 0, 0, 0, 0, 0),
     var iconUri: String? = null,
     var imageUri: String? = null
 ) {
     // FixMe: Don´t write these times to Firestore
     fun getOpenTime(day: Int): String {
-        return createTimeString(openTimeHour[day], openTimeMinute[day])
+        return createTimeString(openHour[day], openMinute[day])
     }
 
     fun getCloseTime(day: Int): String {
-        return createTimeString(closeTimeHour[day], closeTimeMinute[day])
+        return createTimeString(closeHour[day], closeMinute[day])
     }
 
     fun isDayClosed(day: Int): Boolean {
-        return openTimeHour[day] == closeTimeHour[day] &&
-                openTimeMinute[day] == closeTimeMinute[day]
+        return openHour[day] == closeHour[day] &&
+                openMinute[day] == closeMinute[day]
     }
 
     fun isOpen(day: Int, now: Timepoint): Boolean {
-        val open = Timepoint(openTimeHour[day], openTimeMinute[day], 0)
-        val close = Timepoint(closeTimeHour[day], closeTimeMinute[day], 0)
+        val open = Timepoint(openHour[day], openMinute[day], 0)
+        val close = Timepoint(closeHour[day], closeMinute[day], 0)
         return open.toSeconds() < now.toSeconds() && now.toSeconds() < close.toSeconds()
     }
 

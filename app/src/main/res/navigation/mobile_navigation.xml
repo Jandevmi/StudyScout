@@ -50,8 +50,8 @@
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim" >
         <action
-            android:id="@+id/action_navigation_reservation_to_reservationAdd"
-            app:destination="@id/navigation_reservationAdd" />
+            android:id="@+id/action_navigation_reservation_to_reservationDetail"
+            app:destination="@id/navigation_reservationDetail" />
     </fragment>
 
     <fragment
@@ -179,4 +179,20 @@
         android:name="com.example.simov_project.ui.addLocation.AddLocationMapsFragment"
         android:label="fragment_add_location_maps"
         tools:layout="@layout/fragment_add_location_maps" />
+    <fragment
+        android:id="@+id/navigation_reservationDetail"
+        android:name="com.example.simov_project.ui.reservation.ReservationDetailFragment"
+        android:label="fragment_reservation_detail"
+        tools:layout="@layout/fragment_reservation_detail" >
+        <argument
+            android:name="reservationId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_reservationDetail_to_reservation"
+            app:destination="@id/navigation_reservation"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

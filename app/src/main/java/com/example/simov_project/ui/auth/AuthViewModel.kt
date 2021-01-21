@@ -92,18 +92,22 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Removes doubles and the reservationId from user
+     * @param reservationId The reservationId to be deleted
+     */
     fun removeReservationId(reservationId: String) {
         user.value?.let {
             it.reservationIds.apply {
-                remove(reservationId)
                 distinct()
+                remove(reservationId)
             }
             updateUser(it)
         }
     }
 
     /**
-     * Adds the locationID to the user locally and to Firebase
+     * Adds the locationID to the user locally and to Firebase. Removes double IDs.
      * @param locationId The ID to be added to user.locationIds
      */
     fun addLocationId(locationId: String) {

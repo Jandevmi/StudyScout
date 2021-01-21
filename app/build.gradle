@@ -68,4 +68,5 @@ dependencies {
 
     // Material
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 }

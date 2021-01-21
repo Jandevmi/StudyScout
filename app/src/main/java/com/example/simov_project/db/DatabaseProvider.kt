@@ -28,7 +28,6 @@ class DatabaseProvider {
      * @return The locationID or null if creating/updating failed
      */
     suspend fun updateLocation(location: Location): String? {
-        Log.e(TAG, "Writing location")
         return try {
             if (location.locationId == "-1") {
                 db.collection(LOCATIONS)
@@ -47,21 +46,30 @@ class DatabaseProvider {
     }
 
     /**
-     * Creates a new reservation
-     * @param reservation The reservation object to be written to the database
-     * @return The ID of from the created reservation object. Returns "-1" if not successful
+     * Creates or updates new reservation
+     *
+     * If the reservationId is "-1" a new reservation will be created.
+     * If the reservation already has an ID, it will be updated
+     * @param reservation The reservation object to be updated in the database
+     * @return The reservationId or null if creating/updating failed
      */
-    suspend fun createReservation(reservation: Reservation): String? {
+    suspend fun updateReservation(reservation: Reservation): String? {
         return try {
-            db.collection(RESERVATIONS)
-                .add(reservation)
-                .await().id
+            if (reservation.reservationId == "-1") {
+                db.collection(RESERVATIONS)
+                    .add(reservation)
+                    .await().id
+            } else {
+                db.collection(RESERVATIONS).document(reservation.reservationId)
+                    .set(reservation)
+                    .await()
+                reservation.reservationId
+            }
         } catch (e: Exception) {
             Log.e(TAG, "Error writing reservation", e)
             null
         }
     }
-
     /**
      * Get a location from the database
      * @param locationId ID of the needed location

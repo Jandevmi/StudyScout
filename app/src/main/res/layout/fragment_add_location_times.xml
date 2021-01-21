@@ -24,12 +24,12 @@
         <TextView
             style="@style/times_textView"
             android:textStyle="bold"
-            android:text="@string/startTime"/>
+            android:text="@string/start"/>
 
         <TextView
             style="@style/times_textView"
             android:textStyle="bold"
-            android:text="@string/endTime"/>
+            android:text="@string/end"/>
 
         <TextView
             style="@style/times_textView"

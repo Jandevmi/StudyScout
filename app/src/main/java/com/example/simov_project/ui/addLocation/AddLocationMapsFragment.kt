@@ -33,6 +33,10 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 
+/**
+ * !!! Only Test Fragment !!!
+ * Possible Map to show locations around you
+ */
 class AddLocationMapsFragment : Fragment() {
 
     private lateinit var googleMap: GoogleMap

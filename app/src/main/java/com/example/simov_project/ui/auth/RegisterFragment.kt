@@ -15,6 +15,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.simov_project.R
 
+/**
+ * Fragment to Register a new user
+ * Navigates to locationsFragment
+ */
 class RegisterFragment : Fragment() {
 
     override fun onCreateView(

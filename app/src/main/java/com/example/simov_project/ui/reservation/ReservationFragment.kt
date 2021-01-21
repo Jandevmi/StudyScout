@@ -51,7 +51,6 @@ class ReservationFragment : Fragment() {
                 ReservationAdapter(
                     reservationViewModel.reservations.value!!,
                     locationViewModel.icons.value!!,
-                    this,
                     user.locationOwner
                 )
         })
@@ -61,7 +60,6 @@ class ReservationFragment : Fragment() {
                 ReservationAdapter(
                     reservationViewModel.reservations.value!!,
                     itIcons,
-                    this,
                     user.locationOwner
                 ), true
             )
@@ -71,14 +69,5 @@ class ReservationFragment : Fragment() {
             reservationViewModel.getReservationsForUser(user.reservationIds)
 
         return root
-    }
-
-    fun deleteReservation(reservationId: String, locationId: String) {
-        val reservationViewModel: ReservationViewModel by activityViewModels()
-        val locationViewModel: LocationViewModel by activityViewModels()
-        val authViewModel: AuthViewModel by activityViewModels()
-        reservationViewModel.deleteReservation(reservationId)
-        locationViewModel.removeReservationId(reservationId, locationId)
-        authViewModel.removeReservationId(reservationId)
     }
 }
